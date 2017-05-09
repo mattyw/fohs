@@ -1,0 +1,8 @@
+Playing with a forth implementation in haskell
+
+# TODOs
+
+* TODO Add suport for being until
+* IF THEN ELSE
+* Variable const and heap
+* Add more tests (* / = < >)
