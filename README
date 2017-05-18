@@ -2,7 +2,8 @@ Playing with a forth implementation in haskell
 
 # TODOs
 
-* TODO Add suport for being until
+* Add suport for being until
+* Decide how dot should work
 * IF THEN ELSE
 * Variable const and heap
-* Add more tests (* / = < >)
+* Can I simplify basic arithmetic down

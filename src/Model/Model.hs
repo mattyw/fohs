@@ -1,8 +1,5 @@
 module Model.Model where
 
--- TODO Maybe this should be a a Union Type
--- with one option being [Int] -> [Int] and
--- another being [Int] -> (Int, [Int]
 type StackOp = [Int] -> [Int]
 
 push :: Int -> StackOp
@@ -17,6 +14,11 @@ mul :: StackOp
 mul [] = error "empty list"
 mul [x] = error "not enough items"
 mul (a:b:xs) = a*b : xs
+
+sub :: StackOp
+sub [] = error "empty list"
+sub [x] = error "not enough items"
+sub (a:b:xs) = a-b : xs
 
 eq :: StackOp
 eq [] = error "empty list"
@@ -41,7 +43,6 @@ dup [] = error "empty list"
 dup [x] = [x,x]
 dup (x:xs) = x : x : xs
 
--- TODO decide how dot should work.
 dot :: StackOp
 dot [] = error "empty list"
 dot (x:xs) = xs
@@ -54,6 +55,7 @@ run stk (op: ops) = run (op stk) ops
 parse :: [String] -> [StackOp]
 parse [] = []
 parse ("*": xs) = mul : parse xs
+parse ("-": xs) = sub : parse xs
 parse ("+": xs) = add : parse xs
 parse ("<": xs) = lt : parse xs
 parse (">": xs) = gt : parse xs

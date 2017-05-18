@@ -1,7 +1,7 @@
 test:
 	cabal configure --enable-tests
 	cabal build
-	cabal test
+	cabal test --show-details='always'
 .PHONY: test 
 
 clean:
