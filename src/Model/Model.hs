@@ -5,38 +5,28 @@ type StackOp = [Int] -> [Int]
 push :: Int -> StackOp
 push n = \stk -> n : stk
 
+binaryOp :: (Int -> Int -> Int) -> StackOp
+binaryOp _ [] = error "empty list"
+binaryOp _ [x] = error "not enough items"
+binaryOp f (a:b:xs) = a `f` b : xs
+
 add :: StackOp
-add [] = error "empty list"
-add [x] = error "not enough items"
-add (a:b:xs) = a+b : xs
+add = binaryOp (+)
 
 mul :: StackOp
-mul [] = error "empty list"
-mul [x] = error "not enough items"
-mul (a:b:xs) = a*b : xs
+mul = binaryOp (*)
 
 sub :: StackOp
-sub [] = error "empty list"
-sub [x] = error "not enough items"
-sub (a:b:xs) = a-b : xs
+sub = binaryOp (-)
 
 eq :: StackOp
-eq [] = error "empty list"
-eq [x] = error "not enough items"
-eq (a:b:xs) = iseq : xs where
-    iseq = if a==b then 1 else 0
+eq = binaryOp (\a b -> if a==b then 1 else 0)
 
 gt :: StackOp
-gt [] = error "empty list"
-gt [x] = error "not enough items"
-gt (a:b:xs) = isgt : xs where
-    isgt = if a>b then 1 else 0
+gt = binaryOp (\a b -> if a>b then 1 else 0)
 
 lt :: StackOp
-lt [] = error "empty list"
-lt [x] = error "not enough items"
-lt (a:b:xs) = islt : xs where
-    islt = if a<b then 1 else 0
+lt = binaryOp (\a b -> if a<b then 1 else 0)
 
 dup :: StackOp
 dup [] = error "empty list"

@@ -6,4 +6,3 @@ Playing with a forth implementation in haskell
 * Decide how dot should work
 * IF THEN ELSE
 * Variable const and heap
-* Can I simplify basic arithmetic down
